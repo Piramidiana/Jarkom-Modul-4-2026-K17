@@ -7,7 +7,7 @@ Laporan resmi Praktikum Komunikasi Data dan Jaringan Komputer Modul 4: Subnettin
 | Nama | NRP | Bagian |
 | --- | --- | --- |
 | Dian Piramidiana Rachmatika | 5027251031 | GNS3 (CIDR), repo, koordinasi |
-| Jude | (diisi Jude) | Cisco Packet Tracer (VLSM), spreadsheet, penggabungan README |
+| Jude Athala Yazid Sari | 5027251098 | Cisco Packet Tracer (VLSM), spreadsheet, penggabungan README |
 
 ## Struktur repo
 
