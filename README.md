@@ -33,7 +33,8 @@ Prefix kelompok K17 adalah **10.72.x.x**. Cyberia satu-satunya router yang terhu
 
 ![Topologi GNS3](assets/JARKOM4_17_topologi-gns3.png)
 
-_(Topologi CPT: diisi Jude)_
+<img width="958" height="599" alt="4_Topologi FIX" src="https://github.com/user-attachments/assets/d551241c-b304-4e76-a805-bb889f393297" />
+
 
 ## 2. Pelabelan subnet
 
