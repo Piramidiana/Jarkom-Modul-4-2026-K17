@@ -88,7 +88,7 @@ ip route 10.72.32.0 255.255.255.192 10.72.32.66   # A25: LAN Shibuya
 ### ==== Shibuya ====
 ip route 0.0.0.0 0.0.0.0 10.72.32.65              # default ke Phantoma
 
-4. Setting static IP.
+## 4. Setting static IP.
 
      Router	Tujuan	Via	Keterangan
 Cyberia	10.72.0.0/18	10.72.20.130	H1, seluruh blok di belakang Wired
