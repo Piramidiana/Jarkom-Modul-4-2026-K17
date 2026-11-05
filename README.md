@@ -35,15 +35,86 @@ Terdapat **25 subnet** (A1–A25) dengan total kebutuhan **2814 IP**.
 
 2. Total penggunaan subnet.
 
-   _(diisi Jude: total IP, ukuran blok, netmask akar, dan pohon VLSM `Assets/Tree VLSM.png`)_
+<img width="718" height="491" alt="image" src="https://github.com/user-attachments/assets/4cd9aa19-ecd2-4743-b43e-8edf7ab77df5" />
+
+<img width="3339" height="1285" alt="image" src="https://github.com/user-attachments/assets/176b3ca5-0cc8-4049-94b4-d36cd4551163" />
+
 
 3. Static routing.
 
-   _(diisi Jude: file route per router di [`routings/cpt/`](./routings/cpt))_
+### ==== Cyberia ====
+ip route 10.72.0.0 255.255.192.0 10.72.20.130     # H1: semua di belakang Wired
+
+### ==== Wired ====
+ip route 0.0.0.0 0.0.0.0 10.72.20.129             # default ke Cyberia (arah NAT)
+ip route 10.72.8.0 255.255.252.0 10.72.21.2       # A6: LAN Psyche
+ip route 10.72.12.0 255.255.252.0 10.72.21.3      # B9: cabang Copland
+ip route 10.72.0.0 255.255.248.0 10.72.21.4       # C3: cabang Schumann + Accela
+ip route 10.72.16.0 255.255.252.0 10.72.18.66     # C2: cabang Navi
+ip route 10.72.32.0 255.255.240.0 10.72.42.2      # G1: cabang Tachibana
+
+### ==== Psyche / Copland / Schumann (default ke Wired) ====
+ip route 0.0.0.0 0.0.0.0 10.72.21.1               # Psyche, Copland, Schumann: sama semua
+
+### ==== Schumann (tambahan) ====
+ip route 10.72.0.0 255.255.252.0 10.72.4.10       # A11: LAN Accela
+
+### ==== Accela ====
+ip route 0.0.0.0 0.0.0.0 10.72.4.9                # default ke Schumann
+
+### ==== Navi ====
+ip route 0.0.0.0 0.0.0.0 10.72.18.65              # default ke Wired
+
+### ==== Tachibana ====
+ip route 0.0.0.0 0.0.0.0 10.72.42.1               # default ke Wired
+ip route 10.72.32.0 255.255.248.0 10.72.36.130    # F1: semua di belakang Deus
+
+### ==== Deus ====
+ip route 0.0.0.0 0.0.0.0 10.72.36.129             # default ke Tachibana
+ip route 10.72.32.0 255.255.252.0 10.72.34.66     # E1: semua di belakang Protocol7
+
+### ==== Protocol7 ====
+ip route 0.0.0.0 0.0.0.0 10.72.34.65              # default ke Deus
+ip route 10.72.32.0 255.255.254.0 10.72.33.10     # D1: semua di belakang Knights
+
+### ==== Knights ====
+ip route 0.0.0.0 0.0.0.0 10.72.33.9               # default ke Protocol7
+ip route 10.72.32.0 255.255.255.0 10.72.32.162    # C1: semua di belakang Phantoma
+
+### ==== Phantoma ====
+ip route 0.0.0.0 0.0.0.0 10.72.32.161             # default ke Knights
+ip route 10.72.32.0 255.255.255.192 10.72.32.66   # A25: LAN Shibuya
+
+### ==== Shibuya ====
+ip route 0.0.0.0 0.0.0.0 10.72.32.65              # default ke Phantoma
 
 4. Setting static IP.
 
-   _(diisi Jude)_
+     Router	Tujuan	Via	Keterangan
+Cyberia	10.72.0.0/18	10.72.20.130	H1, seluruh blok di belakang Wired
+Wired	default	10.72.20.129	Keluar ke router di atasnya (arah NAT)
+Wired	10.72.8.0/22	10.72.21.2	A6, LAN Psyche
+Wired	10.72.12.0/22	10.72.21.3	B9, cabang Copland
+Wired	10.72.0.0/21	10.72.21.4	C3, cabang Schumann + Accela
+Wired	10.72.16.0/22	10.72.18.66	C2, cabang Navi
+Wired	10.72.32.0/20	10.72.42.2	G1, cabang Tachibana (seluruh jalur dalam)
+Psyche	default	10.72.21.1	Keluar ke router di atasnya
+Copland	default	10.72.21.1	Keluar ke router di atasnya
+Schumann	default	10.72.21.1	Keluar ke router di atasnya
+Schumann	10.72.0.0/22	10.72.4.10	A11, LAN Accela
+Accela	default	10.72.4.9	Keluar ke router di atasnya
+Navi	default	10.72.18.65	Keluar ke router di atasnya
+Tachibana	default	10.72.42.1	Keluar ke router di atasnya
+Tachibana	10.72.32.0/21	10.72.36.130	F1, semua di belakang Deus
+Deus	default	10.72.36.129	Keluar ke router di atasnya
+Deus	10.72.32.0/22	10.72.34.66	E1, semua di belakang Protocol7
+Protocol7	default	10.72.34.65	Keluar ke router di atasnya
+Protocol7	10.72.32.0/23	10.72.33.10	D1, semua di belakang Knights
+Knights	default	10.72.33.9	Keluar ke router di atasnya
+Knights	10.72.32.0/24	10.72.32.162	C1, semua di belakang Phantoma
+Phantoma	default	10.72.32.161	Keluar ke router di atasnya
+Phantoma	10.72.32.0/26	10.72.32.66	A25, LAN Shibuya
+Shibuya	default	10.72.32.65	Keluar ke router di atasnya
 
 ### GNS3 - CIDR
 
